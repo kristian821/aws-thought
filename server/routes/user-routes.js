@@ -1,8 +1,7 @@
 const router = require('express').Router();
 const AWS = require("aws-sdk");
 const awsConfig = {
-    region: "us-east-2",
-    endpoint: "http://localhost:8000",
+    region: "us-east-2"
 };
 AWS.config.update(awsConfig);
 const dynamodb = new AWS.DynamoDB.DocumentClient();
@@ -50,6 +49,7 @@ router.get('/users/:username', (req, res) => {
     });
 }); //closes the route for router.get(user/:username)
 
+// Create new user
 router.post('/users', (req, res) => {
     const params = {
         TableName: table,
@@ -70,5 +70,6 @@ router.post('/users', (req, res) => {
         }
     });
 }); //ends the route for router.post('/users')
+
 
 module.exports = router;
